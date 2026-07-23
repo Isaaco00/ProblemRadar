@@ -6,6 +6,9 @@ export const mockProblems = [
     source: "Reddit",
     evidence:
       "I'm exhausted after work and never know what to cook.",
+    score: "9.2",
+    pain: "Very High",
+    trend: "Growing",
   },
   {
     id: 2,
@@ -14,6 +17,9 @@ export const mockProblems = [
     source: "Reddit",
     evidence:
       "Everything healthy seems to take an hour to prepare.",
+    score: "8.7",
+    pain: "High",
+    trend: "Stable",
   },
   {
     id: 3,
@@ -22,5 +28,8 @@ export const mockProblems = [
     source: "Reddit",
     evidence:
       "I keep buying groceries that expire before I use them.",
+    score: "8.4",
+    pain: "Medium",
+    trend: "Growing",
   },
 ];
