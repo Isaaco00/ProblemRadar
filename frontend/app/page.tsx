@@ -14,13 +14,39 @@ const trendingTopics = [
 
 export default function Home() {
   const router = useRouter();
-  const [topic, setTopic] = useState("");
+    const [topic, setTopic] = useState("");
+    const [loading, setLoading] = useState(false);
 
-  function search() {
-    if (!topic.trim()) return;
+    const loadingMessages = [
+      "Analyzing discussions...",
+      "Searching Reddit...",
+      "Clustering problems...",
+      "Calculating opportunity score...",
+    ];
 
-    router.push(`/results?topic=${encodeURIComponent(topic)}`);
-  }
+    const [messageIndex, setMessageIndex] = useState(0);
+
+async function search() {
+  if (!topic.trim() || loading) return;
+
+  setLoading(true);
+
+  let index = 0;
+
+  const interval = setInterval(() => {
+    index++;
+
+    if (index < loadingMessages.length) {
+      setMessageIndex(index);
+    }
+  }, 500);
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  clearInterval(interval);
+
+  router.push(`/results?topic=${encodeURIComponent(topic)}`);
+}
 
   return (
     <main className="min-h-screen bg-[#0B0B0C] text-white">

@@ -1,5 +1,6 @@
 import ProblemCard from "@/components/ProblemCard";
 import { mockProblems } from "@/lib/mockData";
+import StatsCard from "@/components/StatsCard";
 
 export default async function ResultsPage({
   searchParams,
@@ -51,35 +52,29 @@ export default async function ResultsPage({
 
         
       
-         <div className="mt-10 grid grid-cols-4 gap-6">
+         <div className="mt-10 grid gap-6 md:grid-cols-4">
 
-          <div className="rounded-2xl border border-gray-800 bg-[#151517] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10">
-            <p className="text-gray-400">Opportunity</p>
-            <h3 className="mt-2 text-4xl font-bold text-indigo-400">
-              {opportunityScore}
-            </h3>
-          </div>
+          <StatsCard
+            label="Opportunity"
+            value={opportunityScore}
+            color="text-indigo-400"
+          />
 
-          <div className="rounded-2xl border border-gray-800 bg-[#151517] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10">
-            <p className="text-gray-400">Mentions</p>
-            <h3 className="mt-2 text-4xl font-bold">
-              {totalMentions}
-            </h3>
-          </div>
+          <StatsCard
+            label="Mentions"
+            value={totalMentions}
+          />
 
-          <div className="rounded-2xl border border-gray-800 bg-[#151517] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10">
-            <p className="text-gray-400">Problems</p>
-            <h3 className="mt-2 text-4xl font-bold">
-              {mockProblems.length}
-            </h3>
-          </div>
+          <StatsCard
+            label="Problems"
+            value={mockProblems.length}
+          />
 
-          <div className="rounded-2xl border border-gray-800 bg-[#151517] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10">
-            <p className="text-gray-400">Trend</p>
-            <h3 className="mt-2 text-4xl font-bold text-green-400">
-              Growing
-            </h3>
-          </div>
+          <StatsCard
+            label="Trend"
+            value="Growing"
+            color="text-green-400"
+          />
 
         </div>
 
