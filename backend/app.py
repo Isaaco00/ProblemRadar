@@ -1,10 +1,10 @@
 from fastapi import FastAPI
+from services.research import ResearchService
 
-app = FastAPI(
-    title="ProblemRadar API",
-    description="Evidence-first research engine",
-    version="0.1.0",
-)
+app = FastAPI()
+
+research = ResearchService()
+
 
 @app.get("/")
 def root():
@@ -13,3 +13,9 @@ def root():
         "status": "running",
         "version": "0.1.0",
     }
+
+
+@app.get("/research")
+def run_research(topic: str):
+
+    return research.research(topic)
