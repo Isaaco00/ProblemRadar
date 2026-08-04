@@ -1,17 +1,21 @@
 from services.collector_manager import CollectorManager
+from services.evidence_pipeline import EvidencePipeline
 
 
 class ResearchService:
 
     def __init__(self):
-        self.collector = CollectorManager()
+        self.collector_manager = CollectorManager()
+        self.pipeline = EvidencePipeline()
 
     def research(self, topic: str):
 
-        evidence = self.collector.collect(topic)
+        raw_evidence = self.collector_manager.collect(topic)
+
+        processed_evidence = self.pipeline.process(raw_evidence)
 
         return {
             "topic": topic,
-            "sources": len(evidence),
-            "evidence": evidence,
+            "sources": len(processed_evidence),
+            "evidence": processed_evidence,
         }

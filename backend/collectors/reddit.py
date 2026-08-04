@@ -3,12 +3,12 @@ import requests
 
 
 class RedditCollector:
-    BASE_URL = "https://www.reddit.com/search.json"
+    BASE_URL = "https://www.reddit.com/r/all/search.json"
 
     def collect(self, topic: str):
 
         headers = {
-            "User-Agent": "ProblemRadar/0.1"
+            "User-Agent": "ProblemRadarBot/0.1 by Isaac"
         }
 
         params = {
@@ -54,6 +54,8 @@ class RedditCollector:
 
         except Exception as e:
 
-            print(f"Reddit collector error: {e}")
+            import traceback
+
+            traceback.print_exc()
 
             return []

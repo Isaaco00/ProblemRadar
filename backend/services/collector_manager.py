@@ -1,4 +1,5 @@
 from collectors.reddit import RedditCollector
+from collectors.hackernews import HackerNewsCollector
 
 
 class CollectorManager:
@@ -6,6 +7,7 @@ class CollectorManager:
     def __init__(self):
 
         self.collectors = [
+            HackerNewsCollector(),
             RedditCollector(),
         ]
 
@@ -15,8 +17,15 @@ class CollectorManager:
 
         for collector in self.collectors:
 
-            evidence.extend(
-                collector.collect(topic)
-            )
+            try:
+                evidence.extend(
+                    collector.collect(topic)
+                )
+
+            except Exception as e:
+
+                print(
+                    f"{collector.__class__.__name__} failed: {e}"
+                )
 
         return evidence
